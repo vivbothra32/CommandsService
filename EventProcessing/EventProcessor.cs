@@ -58,7 +58,8 @@ namespace CommandsService.EventProcessing
                 {
                     var plat = _mapper.Map<Platform>(platformPublishedDto);
                     if(!repo.ExternalPlatformExists(plat.ExternalId))
-                    {
+                    {                
+                        Console.WriteLine($"--> Attempting to add platform to DB...: {plat.Id} {plat.Name} {plat.ExternalId}");
                         repo.CreatePlatform(plat);
                         repo.SaveChanges();
                         Console.WriteLine("--> Platform added!");
